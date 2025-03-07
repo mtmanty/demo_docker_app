@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  backend:
+    build: ./demo_spring_be
+    container_name: backend
+    ports:
+      - "8080:8080"
+  frontend:
+    build: ./demo_nextjs_fe
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - API_HOST=http://backend:8080
+    depends_on:
+      - backend
